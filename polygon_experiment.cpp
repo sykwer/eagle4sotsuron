@@ -26,6 +26,7 @@ int main() {
   const float SHIFT = 0.025;
 
   vector<R> rects;
+  vector<T> vias;
 
   for (int j = 0; j < NUM; j++) {
     vector<P> ypos;
@@ -51,9 +52,11 @@ int main() {
         ypos.push_back(P(xx1 - SHIFT, yy1 - SHIFT - BOTTOM_SHIFT));
         ypos.push_back(P(xx4, yy4 - BOTTOM_SHIFT));
         ypos.push_back(P(xx3, yy3 - BOTTOM_SHIFT));
+        vias.push_back(make_tuple(xx1, (yy1 + yy3) / 2 - BOTTOM_SHIFT, "yaxis" + to_string(j)));
 
         // Rects below
         rects.push_back(make_tuple(P(xx1, yy1-BOTTOM_SHIFT-width), P(xx2, yy2-BOTTOM_SHIFT-width), P(xx3, yy3-BOTTOM_SHIFT-width), P(xx4, yy4-BOTTOM_SHIFT-width), j));
+        vias.push_back(make_tuple(xx1, (yy1 + yy3) / 2 - BOTTOM_SHIFT - width, "yaxis" + to_string(j)));
       }
     }
 
@@ -88,8 +91,6 @@ int main() {
     }
     cout << "; ";
   }
-
-  vector<T> vias;
 
   for (int j = 0; j < NUM; j++) {
     for (int i = 0; i < NUM; i++) {
