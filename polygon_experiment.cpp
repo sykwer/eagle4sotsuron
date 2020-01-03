@@ -25,13 +25,14 @@ int main() {
 
   const float SHIFT = 0.025;
 
-  vector<R> rects;
+  // vector<R> rects; // Separate rects
   vector<T> vias;
 
   for (int j = 0; j < NUM; j++) {
     vector<P> ypos;
 
-    const float BOTTOM_SHIFT = 1.0 + width * (j % 4);
+    //const float BOTTOM_SHIFT = 1.0 + width * (j % 4);
+    const float BOTTOM_SHIFT = 1.0;
     for (int i = 0; i < NUM; i++) {
       float xx1 = (x1 + j * width);
       float yy1 = (y1 - i * width) - delta;
@@ -55,8 +56,10 @@ int main() {
         vias.push_back(make_tuple(xx1, (yy1 + yy3) / 2 - BOTTOM_SHIFT, "yaxis" + to_string(j)));
 
         // Rects below
+        /*
         rects.push_back(make_tuple(P(xx1, yy1-BOTTOM_SHIFT-width), P(xx2, yy2-BOTTOM_SHIFT-width), P(xx3, yy3-BOTTOM_SHIFT-width), P(xx4, yy4-BOTTOM_SHIFT-width), j));
         vias.push_back(make_tuple(xx1, (yy1 + yy3) / 2 - BOTTOM_SHIFT - width, "yaxis" + to_string(j)));
+        */
       }
     }
 
@@ -124,6 +127,8 @@ int main() {
     }
   }
 
+  // Separate rects
+  /*
   for (R rect : rects) {
     P p1 = get<0>(rect);
     P p2 = get<1>(rect);
@@ -132,6 +137,7 @@ int main() {
     string name = "yaxis" + to_string(get<4>(rect));
     cout << "poly " << name << " 0.01 (" << p1.first << " " << p1.second << ") (" << p2.first << " " << p2.second << ") (" << p3.first << " " << p3.second << ") (" << p4.first << " " << p4.second << ") (" << p1.first << " " << p1.second << "); ";
   }
+  */
 
   cout << "change drill 0.15; ";
   cout << "via 0.35; ";
